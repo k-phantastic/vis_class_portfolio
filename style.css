@@ -92,3 +92,32 @@ form button {
     height: calc(100vh - 2em); /* Adjust height dynamically based on the viewport height */
     border: none; /* Optional: Remove border for a cleaner look */
 }
+
+.resume-header {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.resume-page h2 {
+    margin-bottom: 0.5em; /* Add space below the section title */
+}
+
+.resume-page h3 {
+    margin-top: 0.2em;
+}
+
+.resume-page section {
+    border: 2px solid oklch(78.307% 0.01368 17.093); /* Draw a solid blue border around the section */
+    padding: 1em; /* Add padding inside the box */
+    margin: 0.5em 0; /* Add spacing above and below the section */
+    border-radius: 8px; /* Optional: Round the corners of the box */
+}
+
+.resume-page article {
+    border: 1.5px solid oklch(78.307% 0.01368 17.093);
+    padding: 1em; 
+    margin-top: 0em;
+    margin-bottom: 0em; 
+    border-radius: 8px; /* Optional: Round the corners of the box */
+}
