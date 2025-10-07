@@ -1,6 +1,94 @@
+:root {
+    --color-accent: oklch(78.307% 0.01368 17.093); /* Define the accent color */
+}
+
+
+html {
+    accent-color: var(--color-accent); /* Set the default accent color */
+}
+
 body { 
     /* Set line height to 1.5 times the font size
     and use the OS's UI font as the website font */
     
     font: 100%/1.5 system-ui;
+    max-width: 100ch; /* Set the maximum width */
+    margin-inline: max(1em, (100% - 100ch) / 2); /* Center content horizontally */
+}
+
+h1 {
+    font-size: 400%;
+}
+
+h2 {
+    margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    line-height: 1.1;
+    text-wrap: balance;
+}
+
+nav {
+    display: flex;
+    margin-bottom: 1.5em; /* Add space below the navigation */
+    border-bottom-width: 1px; /* Add a bottom border */
+    border-bottom-style: solid;
+    border-bottom-color: oklch(80% 3% 200); /* Light gray border color */
+}
+
+nav a {
+    flex: 1; /* Make each link take up equal space */
+    text-align: center; /* Center the text inside each link */
+    text-decoration: none; /* Remove underline from links */
+    color: inherit; /* Inherit text color from parent */
+    padding: 0.5em; /* Add some padding for better clickability */
+}
+
+nav a.current {
+    border-bottom-width: 0.4em; /* Add a bottom border */
+    border-bottom-style: solid;
+    border-bottom-color: oklch(80% 3% 200); /* Light gray border color */
+}
+
+nav a:hover {
+    background-color: var(--color-accent); /* Light gray background on hover */
+    border-bottom-width: 0.4em; /* Add a bottom border */
+    border-bottom-style: solid;
+    border-bottom-color: oklch(45.178% 0.11392 22.74); /* Change border color on hover */
+}
+
+form {
+    font: inherit; /* Inherit font styles from parent */
+    display: grid;
+    grid-template-columns: auto 1fr; /* Two columns: labels and inputs */
+    gap: 1em; /* Add spacing between rows and columns */
+}
+
+form label {
+    display: grid; /* Make labels behave like block elements */
+    grid-template-columns: subgrid;
+}
+
+form button {
+    grid-column: 1 / -1; /* Span both columns */
+}
+
+.projects {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(15em, 1fr)); /* Responsive columns */
+    gap: 1em; /* Add spacing between projects */
+}
+
+.projects article {
+    display: grid;
+    grid-template-columns: subgrid;
+    grid-row: span 3; /* Make each project span 3 rows */
+    gap: 1em; /* Add spacing between elements */
+}
+
+.resume-embed {
+    width: 100%; /* Make the embed span the full width of the browser */
+    height: calc(100vh - 2em); /* Adjust height dynamically based on the viewport height */
+    border: none; /* Optional: Remove border for a cleaner look */
 }
