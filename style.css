@@ -118,6 +118,6 @@ form button {
     border: 1.5px solid oklch(78.307% 0.01368 17.093);
     padding: 1em; 
     margin-top: 0em;
-    margin-bottom: 0em; 
+    margin-bottom: .5em; 
     border-radius: 8px; /* Optional: Round the corners of the box */
 }
