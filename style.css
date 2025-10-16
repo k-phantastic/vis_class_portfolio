@@ -1,5 +1,7 @@
 :root {
     --color-accent: oklch(78.307% 0.01368 17.093); /* Define the accent color */
+    color-scheme: light dark; 
+    --border-color: oklch(50% 10% 200 / 40%);
 }
 
 
@@ -34,7 +36,7 @@ nav {
     margin-bottom: 1.5em; /* Add space below the navigation */
     border-bottom-width: 1px; /* Add a bottom border */
     border-bottom-style: solid;
-    border-bottom-color: oklch(80% 3% 200); /* Light gray border color */
+    border-bottom-color: var(--border-color); /* Light gray border color */
 }
 
 nav a {
@@ -48,11 +50,11 @@ nav a {
 nav a.current {
     border-bottom-width: 0.4em; /* Add a bottom border */
     border-bottom-style: solid;
-    border-bottom-color: oklch(80% 3% 200); /* Light gray border color */
+    border-bottom-color: var(--border-color); /* Light gray border color */
 }
 
 nav a:hover {
-    background-color: var(--color-accent); /* Light gray background on hover */
+    background-color: color-mix(in oklch, var(--color-accent), canvas 85%); /* Light gray background on hover */
     border-bottom-width: 0.4em; /* Add a bottom border */
     border-bottom-style: solid;
     border-bottom-color: oklch(45.178% 0.11392 22.74); /* Change border color on hover */
@@ -120,4 +122,12 @@ form button {
     margin-top: 0em;
     margin-bottom: .5em; 
     border-radius: 8px; /* Optional: Round the corners of the box */
+}
+
+.color-scheme {
+    position: absolute;
+	top: 1rem;
+	right: 1rem;
+    font-size: 80%;
+    font-family: inherit;
 }
