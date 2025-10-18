@@ -36,7 +36,7 @@ nav {
     margin-bottom: 1.5em; /* Add space below the navigation */
     border-bottom-width: 1px; /* Add a bottom border */
     border-bottom-style: solid;
-    border-bottom-color: var(--border-color); /* Light gray border color */
+    /* border-bottom-color: var(--border-color); Light gray border color */
 }
 
 nav a {
