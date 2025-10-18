@@ -34,9 +34,7 @@ h1, h2, h3, h4, h5, h6 {
 nav {
     display: flex;
     margin-bottom: 1.5em; /* Add space below the navigation */
-    border-bottom-width: 1px; /* Add a bottom border */
-    border-bottom-style: solid;
-    /* border-bottom-color: var(--border-color); Light gray border color */
+
 }
 
 nav a {
