@@ -36,10 +36,10 @@ const BASE_PATH = (location.hostname === "localhost" || location.hostname === "1
 for (let p of pages) {
     let url = p.url;
     let title = p.title;
-    // if (!ARE_WE_HOME && !url.startsWith('http')) {
-    //     url = '../' + url;
-    // }
-    url = !url.startsWith('http') ? BASE_PATH + url : url;
+    if (!ARE_WE_HOME && !url.startsWith('http')) {
+        url = '../' + url;
+    }
+    // url = !url.startsWith('http') ? BASE_PATH + url : url;
     // TODO create link and add it to nav
     // Create link and add it to nav
     let a = document.createElement('a');
