@@ -53,7 +53,7 @@ for (let p of pages) {
     // if (a.host === location.host) {
     //     a.classList.add('current');
     // }
-    if (a.host === location.host) {
+    if (a.host === location.host && a.pathname === location.pathname) {
         const currentPath = location.pathname.endsWith('/') ? location.pathname + 'index.html' : location.pathname;
         const linkPath = a.pathname.endsWith('/') ? a.pathname + 'index.html' : a.pathname;
         if (linkPath === currentPath) {
