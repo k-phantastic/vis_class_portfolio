@@ -39,10 +39,7 @@ for (let p of pages) {
     // if (!ARE_WE_HOME && !url.startsWith('http')) {
     //     url = '../' + url;
     // }
-    if (!url.startsWith('http')) {
-        url = BASE_PATH + url;
-    }
-    // url = !url.startsWith('http') ? BASE_PATH + url : url;
+    url = !url.startsWith('http') ? BASE_PATH + url : url;
     // TODO create link and add it to nav
     // Create link and add it to nav
     let a = document.createElement('a');
