@@ -50,8 +50,15 @@ for (let p of pages) {
     a.textContent = title;
     nav.append(a);
     
-    if (a.host === location.host && a.pathname === location.pathname) {
-        a.classList.add('current');
+    // if (a.host === location.host && a.pathname === location.pathname) {
+    //     a.classList.add('current');
+    // }
+    if (a.host === location.host) {
+        const currentPath = location.pathname.endsWith('/') ? location.pathname + 'index.html' : location.pathname;
+        const linkPath = a.pathname.endsWith('/') ? a.pathname + 'index.html' : a.pathname;
+        if (linkPath === currentPath) {
+            a.classList.add('current');
+        }
     }
     if (a.host !== location.host) {
         a.target = '_blank';
