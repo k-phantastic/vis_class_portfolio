@@ -84,10 +84,24 @@ form button {
 
 .projects article {
     display: grid;
-    grid-template-columns: subgrid;
+    grid-template-rows: subgrid;
     grid-row: span 3; /* Make each project span 3 rows */
     gap: 1em; /* Add spacing between elements */
 }
+
+.latest-projects {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(15em, 1fr)); /* Responsive columns */
+    gap: 1em; /* Add spacing between projects */
+}
+
+.latest-projects article {
+    display: grid;
+    grid-template-rows: subgrid;
+    grid-row: span 3; /* Make each project span 3 rows */
+    gap: 1em; /* Add spacing between elements */
+}
+
 
 .resume-embed {
     width: 100%; /* Make the embed span the full width of the browser */
@@ -130,4 +144,25 @@ form button {
 	right: 1rem;
     font-size: 80%;
     font-family: inherit;
+}
+
+#profile-stats dl {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 2rem;
+    row-gap: 0.5rem;
+    text-align: left;
+}
+
+#profile-stats dt {
+    font-size: 0.75rem;
+    color: color-mix(in srgb, GrayText 90%, Canvas 5%);
+    text-transform: uppercase;
+    grid-row: 1;
+}
+
+#profile-stats dd {
+    font-size: 2rem;
+    margin: 0;
+    grid-row: 2;
 }

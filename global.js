@@ -108,3 +108,57 @@ form?.addEventListener('submit', function (event) {
     console.log(form_url);
     location.href = form_url;
 });
+
+export async function fetchJSON(url) {
+    try { 
+        // Fetch the JSON file from the given URL
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`Failed to fetch projects: ${response.statusText}`);
+        } 
+        console.log('Response', response);
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error fetching or parsing JSON data:', error);
+    }
+}
+
+export function renderProjects(projects, containerElement, headingLevel = 'h2') {
+    // Validating containerElement, usually to select a class 
+    if (!(containerElement instanceof HTMLElement)) {
+        console.error('Invalid containerElement: Expected an HTML element.');
+        return;
+    }
+    // Validate headingLevel to be one of h1 to h6
+    const validHeadings = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
+    if (!validHeadings.includes(headingLevel)) {
+        console.warn(`Invalid headingLevel "${headingLevel}". Defaulting to "h2".`);
+        headingLevel = 'h2';
+    }
+    // Validate projects 
+    if (!Array.isArray(projects)) {
+        console.error('Invalid projects data: Expected an array of project objects.');
+        return;
+    }
+    containerElement.innerHTML = ''; // Clear existing content, ensure container is empty to avoid duplication
+    for (const project of projects) {
+        // Fallback values
+        const title = project?.title ?? 'Untitled Project';
+        const image = project?.image ?? 'https://vis-society.github.io/labs/2/images/empty.svg';
+        const description = project?.description ?? 'No description available.';
+        // Create article element for each project
+        const article = document.createElement('article');
+        article.innerHTML = `
+            <${headingLevel}>${title}</${headingLevel}>
+            <img src="${image}" alt="${title}">
+            <p>${description}</p>
+        `;
+        containerElement.appendChild(article);
+    }
+}
+
+export async function fetchGitHubData(username) {
+  // return statement here
+  return fetchJSON(`https://api.github.com/users/${username}`);
+}
