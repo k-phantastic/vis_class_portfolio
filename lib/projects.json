@@ -1,62 +1,74 @@
 [
     {
-        "title": "Lorem ipsum dolor sit.",
+        "title": "Persuasive/Deceptive Visualizations",
+        "year": "2025",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam perspiciatis quidem corporis quis eveniet voluptates quibusdam fugit maiores magnam laudantium mollitia tempore facilis saepe est suscipit dolorum quo, quia obcaecati?"
+        "description": "Two visualizations representing opposite narratives of a proposition from the same dataset."
     },
     {
-        "title": "Molestias error ad incidunt.",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Sequi labore nesciunt nulla deleniti omnis, est quas illum excepturi hic voluptates suscipit ut id quia debitis consequuntur assumenda sed aliquam vero ab! Unde nobis et dolores at, nesciunt quod."
+        "title": "Nutrient Distribution by Food Processing Level",
+        "year": "2025",
+        "image": "../images/expo_vis.png",
+        "description": "Visual representation of how nutrient levels vary across different food processing categories, highlighting health implications."
     },
     {
-        "title": "Ratione accusamus quasi dolorem!",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Et dolore molestias tenetur quos quis, eveniet temporibus dolorum. A molestias ut repellat rem eius amet voluptates, cumque nulla temporibus minus similique magnam eaque perspiciatis est tenetur, enim modi ratione."
+        "title": "Restaurant Classification",
+        "year": "2025",
+        "image": "../images/restaurant_classification.png",
+        "description": "A project digesting restaurant reviews and attributes to determine type of food served"
     },
     {
-        "title": "Quod quisquam officiis amet.",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Natus voluptatibus libero doloremque. Iste provident, similique molestiae ipsa dignissimos eos? Nisi, dolorum dolores. Commodi dignissimos cumque dolore ipsum. Et sit rerum amet necessitatibus error minus tempora nostrum sed alias?"
+        "title": "Pickleball Data Warehouse",
+        "year": "2025",
+        "image": "../images/pickleball_data_warehouse.png",
+        "description": "SQL cleanup of raw data using medallion structure."
     },
     {
-        "title": "Iure deserunt consequuntur nisi?",
+        "title": "MechaCar Statistical Analysis",
+        "year": "2023",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Dignissimos nam similique facere minus pariatur velit placeat sunt natus et, aut consequuntur in explicabo quasi saepe maxime est magnam repellat doloremque voluptas odio. Doloribus ut ad repellat obcaecati voluptatibus."
+        "description": "The application of R through RStudio is used to extract and transform data for a company"
     },
     {
-        "title": "In voluptatum illum ratione.",
+        "title": "Kickstarter Analysis",
+        "year": "2022",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Amet atque deleniti eaque odit, accusamus ad laudantium assumenda facere rem totam itaque sint, doloribus nisi qui dolorem sunt, quis rerum est reiciendis non ut. Suscipit maxime repellat fugit beatae!"
+        "description": "Excel analysis of Kickstarter campaigns to determine factors that lead to success."
     },
     {
-        "title": "Consectetur tempora eaque nam.",
+        "title": "World Weather Analysis",
+        "year": "2022",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Non deleniti molestiae quo dolorum cupiditate neque beatae hic, aliquid labore, aperiam necessitatibus accusamus corporis blanditiis illum iste amet qui velit fugiat? Est placeat, repellendus atque distinctio impedit repellat animi!"
+        "description": "Python was utilized in conjunction with GeoViews and Geoapify in order to narrow down a potential vacation destination and city travel itinerary"
     },
     {
-        "title": "Dolore placeat autem odit.",
+        "title": "Crowdfunding (ETL)",
+        "year": "2023",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Error incidunt corporis similique optio inventore laboriosam aliquam sit voluptatum aut expedita, exercitationem ut perspiciatis. Tempore, id ipsam maiores sapiente aut nesciunt illum in, sed quisquam deleniti molestiae eos alias!"
+        "description": " Python and PostgreSQL in order to digest the dataset such that the tables are correlated to determine a specific information queries as desired"
     },
     {
-        "title": "Illo quibusdam aperiam aliquam.",
+        "title": "Surfs Up",
+        "year": "2023",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Hic animi consequuntur, aliquid exercitationem reiciendis velit maxime optio ipsam veniam unde neque ex fugit provident, sapiente cumque excepturi fuga nam sunt officia voluptatem eum quidem blanditiis illum? Vero, provident."
+        "description": "Usage of SQLalchemy in Python to extract and transform weather data for Hawaii"
     },
     {
-        "title": "Quibusdam explicabo quasi quam?",
+        "title": "School District Analysis",
+        "year": "2024",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Voluptate unde tempora quod. Deserunt unde nam laboriosam officia id totam ut alias sequi in dolor commodi, et enim vel assumenda voluptatem cum sed excepturi ratione voluptas mollitia minima laborum!"
+        "description": "Pandas sandbox to analyze school district performance and funding."
     },
     {
-        "title": "Maxime magni repudiandae facilis?",
+        "title": "Pickleball Paddle Comparison",
+        "year": "2024",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Nemo voluptatibus, dolor nesciunt itaque suscipit assumenda necessitatibus. Accusamus, aliquam nihil! Temporibus, nesciunt voluptates dignissimos qui labore nisi aperiam error hic quae voluptatibus autem fuga, impedit enim obcaecati delectus placeat!"
+        "description": "ETL of various reviewers' data on pickleball paddles"
     },
     {
-        "title": "Quibusdam itaque doloremque cum.",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Accusantium, non veniam, autem debitis inventore reiciendis repudiandae quaerat aliquam quo et a iure aliquid quidem. Voluptas hic aliquam tempore nostrum illum non, eligendi quas, ex totam qui ipsam quaerat!"
+        "title": "Steam Review Analysis",
+        "year": "2025",
+        "image": "../images/steam_review_analysis.png",
+        "description": "PySpark and pandas analysis of Steam game reviews to determine factors that lead to positive reviews."
     }
 ]

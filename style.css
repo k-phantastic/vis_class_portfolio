@@ -89,6 +89,23 @@ form button {
     gap: 1em; /* Add spacing between elements */
 }
 
+.projects article img {
+    display: block;            /* remove inline-gap */
+    width: 100%;               /* fill the article column */
+    height: 12rem;             /* same visual height for all images — adjust as needed */
+    object-fit: cover;         /* crop to fill while preserving aspect ratio */
+    object-position: center;   /* center the cropped area */
+    border-radius: 6px;        /* optional: rounded corners */
+}
+.latest-projects article img {
+    display: block;            /* remove inline-gap */
+    width: 100%;               /* fill the article column */
+    height: 12rem;             /* same visual height for all images — adjust as needed */
+    object-fit: cover;         /* crop to fill while preserving aspect ratio */
+    object-position: center;   /* center the cropped area */
+    border-radius: 6px;        /* optional: rounded corners */
+}
+
 .latest-projects {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(15em, 1fr)); /* Responsive columns */
