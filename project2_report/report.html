@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Project 2 Report</title>
+    <style>
+      :root {
+        --color-neutral-95: hsl(220 10% 95%);
+        --color-neutral-90: hsl(220 10% 90%);
+        --color-neutral-80: hsl(220 10% 80%);
+        --color-neutral-70: hsl(220 10% 70%);
+        --color-neutral-60: hsl(220 10% 60%);
+        --color-neutral-50: hsl(220 10% 50%);
+        --color-neutral-40: hsl(220 10% 40%);
+        --color-neutral-30: hsl(220 10% 30%);
+        --color-neutral-20: hsl(220 10% 20%);
+        --color-neutral-10: hsl(220 10% 10%);
+      }
+
+      html {
+        font: 100%/1.5 system-ui;
+        counter-reset: figure;
+        background: var(--color-neutral-95);
+        max-width: min(75vw, 80em);
+        margin: 0 auto;
+      }
+
+      /* Headings */
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        line-height: 1.1;
+        font-weight: 600;
+        text-wrap: balance;
+      }
+
+      h1,
+      h2 {
+        border-bottom: 1px solid var(--color-neutral-80);
+        padding-bottom: 0.2em;
+      }
+
+      h1 {
+        margin-block: 1em 0.5rem;
+        font-size: clamp(2.5em, 150% + 2vh + 2vw, 10vmin);
+        font-weight: 800;
+
+        small {
+          display: block;
+          width: fit-content;
+          padding: 0.2em 0.5em;
+          margin-inline: auto;
+          color: white;
+          background: var(--color-neutral-40);
+          font-size: 40%;
+          text-transform: uppercase;
+          white-space: nowrap;
+        }
+      }
+
+      h2 {
+        font-size: 180%;
+        color: var(--color-neutral-30);
+      }
+
+      h3 {
+        font-size: 130%;
+      }
+
+      /* Lists */
+
+      ul,
+      ol {
+        padding-inline-start: 2em;
+      }
+
+      li {
+        &::marker {
+          color: var(--color-neutral-40);
+        }
+
+        + li {
+          margin-top: 0.2em;
+        }
+      }
+
+      /* Sectioning elements */
+
+      header {
+        padding-block: 1em;
+        text-align: center;
+      }
+
+      main {
+        background: white;
+        color: var(--color-neutral-20);
+        border-radius: 1rem;
+        padding: 0.1rem 2rem;
+      }
+
+      /* Figures */
+
+      figure {
+        margin: 1em 0;
+        padding: 0.5rem;
+        margin-inline: -0.5em;
+        border: 1px solid var(--color-neutral-80);
+        box-shadow: 0 0.1em 0.2em var(--color-neutral-95);
+        text-align: center;
+        background: white;
+
+        > figcaption {
+          font: 500 75% var(--font-sans);
+          background: var(--color-neutral-95);
+          padding: 0.5rem;
+          margin: -0.5rem;
+          margin-top: 0.5rem;
+          counter-increment: figure;
+          text-align: left;
+
+          &::before {
+            content: 'Figure ' counter(figure) ': ';
+            font-weight: bold;
+            color: var(--color-neutral-40);
+          }
+
+          a:not(:hover, :focus, :active) {
+            color: inherit;
+            text-decoration: underline;
+            text-decoration-color: color-mix(
+              in lab,
+              currentColor,
+              transparent 70%
+            );
+          }
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <h1>
+        <small>Assignment 4</small>
+        Persuasive or Deceptive Visualization?
+      </h1>
+
+      <p><strong>Khanh Phan</strong> — <em>khp023@ucsd.edu</em></p>
+    </header>
+
+    <main>
+      <h2>Proposition: There is increased distrust in the NYPD over time by people of color. </h2>
+
+      <section>
+        <h3>FOR the Proposition</h3>
+
+        <figure>
+          <img src="for.png" alt="" />
+          <figcaption>BRIEF CAPTION HERE.</figcaption>
+        </figure>
+
+        <p>Design Decisions and Rationale:</p>
+
+        <ul>
+          <li>Usage of color gradient to emphasize differences in complaint rates over time.</li>
+          <li>Inclusion of a zero-line to emphasize the inherent gap always present between complaints from non-POC and minorities.</li>
+          <li>Aggregation using difference in count between non-POC and POC complaints.</li>
+          <li>Scale: 1, This visualization while earnest in intent and mathematic portrayal, the usage of the difference may be slightly deceptive.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h3>AGAINST the Proposition</h3>
+
+        <figure>
+          <img src="against.png" alt="" />
+          <figcaption>BRIEF CAPTION HERE.</figcaption>
+        </figure>
+
+        <p>Design Decisions and Rationale:</p>
+
+        <ul>
+          <li>Intentional usage of similar color palette to create a sense of cohesion between the two groups and bring confusion to the audience.</li>
+          <li>Manipulation of axis scales to obscure the true extent of the disparity.</li>
+          <li>As direct result of two points above, using the same color for the misleading axis as its line such that it is harder to spot the label</li>
+          <li>Scale: -2, this visualization is meant to confuse at a glance such that those looking at only the line shape and the title to discern a conclusion.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Final Reflection</h2>
+
+        <p>The common theme for this project across both visualizations includes the importance of context and the importance to do due diligence in investigating
+          to understand the full story behind data (and how it's represented). My key design choice for the "for" proposition visualization was to emphasize the 
+          gradient as a sense of urgency. The key design choice for the "against" proposition was to manipulate the axes. 
+          <br>
+          <br>
+          For the deceptive visualization against the proposition, 
+          it was difficult to add deceptive elements without using erratic calculations on the dataset. As such, for both, grouping and filtering the ethnicities
+          allowed for better understanding of the trends at hand. It was easier for the persuasive visualization to use the data at hand without heavy calculation or axes manipulation; keeping that portion simple.
+          <br>
+          <br>
+          What ended up being interesting and to my prior point is how both visualizations, 
+          whether or not the argument is ethical/supported properly, there can still be deceptive elements- just a difference in "direction" of persuasion. Citing some of the lecture remarks by Sam, often
+          times the best visualizations and typically by effect more ethical ones are the ones that are simplest, clear, and direct (in regards to data-ink ratio).
+          <br>
+          <br>
+          In doing this exercise, I can consequently identify "acceptable" persuasive choices as ones that enhance the clarity of the message
+          without distorting the data, but perhaps more importantly ones that are not just naked data but include context whether through 
+          clear paragraph annotation or simplicity in design. The "misleading" or deceptive choices are ones that perform manipulations through calculations
+          or axes manipulations to exagerrate differences. Additionally these deceptive or poor visualizations often will lack information, cherry pick data, 
+          or leave out plot elements. 
+
+        </p>
+      </section>
+    </main>
+  </body>
+</html>
