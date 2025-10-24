@@ -2,25 +2,25 @@
     {
         "title": "Persuasive/Deceptive Visualizations",
         "year": "2025",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "image": "/vis_class_portfolio/project2_report/for.png",
         "description": "Two visualizations representing opposite narratives of a proposition from the same dataset."
     },
     {
         "title": "Nutrient Distribution by Food Processing Level",
         "year": "2025",
-        "image": "../images/expo_vis.png",
+        "image": "/vis_class_portfolio/images/expo_vis.png",
         "description": "Visual representation of how nutrient levels vary across different food processing categories, highlighting health implications."
     },
     {
         "title": "Restaurant Classification",
         "year": "2025",
-        "image": "../images/restaurant_classification.png",
+        "image": "/vis_class_portfolio/images/restaurant_classification.png",
         "description": "A project digesting restaurant reviews and attributes to determine type of food served"
     },
     {
         "title": "Pickleball Data Warehouse",
         "year": "2025",
-        "image": "../images/pickleball_data_warehouse.png",
+        "image": "/vis_class_portfolio/images/pickleball_data_warehouse.png",
         "description": "SQL cleanup of raw data using medallion structure."
     },
     {
