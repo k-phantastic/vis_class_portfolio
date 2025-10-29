@@ -226,3 +226,13 @@ form button {
     aspect-ratio: 1 / 1;
     background-color: var(--color);
 }
+
+&:has(path:hover) {
+  path:not(:hover) {
+    opacity: 0.5;
+  }
+}
+
+path {
+  transition: 300ms;
+}

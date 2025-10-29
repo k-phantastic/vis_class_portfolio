@@ -15,6 +15,7 @@ let arcGenerator = d3.arc().innerRadius(0).outerRadius(50); // Arc generator for
 let colors = d3.scaleOrdinal(d3.schemeTableau10); // Colors for the pie slices
 
 // Refactor all plotting into one function
+let selectedIndex = -1; // No slice selected initially
 function renderPieChart(projectsGiven) {
     let newSVG = d3.select('svg');
     newSVG.selectAll('path').remove();
@@ -46,7 +47,17 @@ function renderPieChart(projectsGiven) {
         newLegend
             .append('li')
             .attr('style', `--color:${colors(idx)}`) // set the style attribute while passing in parameters
-            .html(`<span class="swatch"></span> ${d.label} <em>(${d.value})</em>`); // set the inner html of <li>
+            .html(`<span class="swatch"></span> ${d.label} <em>(${d.value})</em>`) // set the inner html of <li>
+            .on('click', () => {
+                selectedIndex = selectedIndex === idx ? -1 : idx;
+                const selectedYear = selectedIndex === -1 ? null : newData[selectedIndex].label;
+                let filteredProjects = selectedIndex === -1
+                    ? projects
+                    : projects.filter(p => p.year === selectedYear);
+                renderProjects(filteredProjects, projectsContainer, 'h2');
+                renderPieChart(filteredProjects);
+                title.textContent = `Projects (${filteredProjects.length})`;
+            });
     });
 }
 
@@ -68,3 +79,4 @@ searchInput.addEventListener('input', (event) => {
     renderPieChart(filteredProjects);
     title.textContent = `Projects (${filteredProjects.length})`;
 });
+
