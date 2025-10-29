@@ -85,7 +85,7 @@ form button {
 .projects article {
     display: grid;
     grid-template-rows: subgrid;
-    grid-row: span 3; /* Make each project span 3 rows */
+    grid-row: span 4; /* Make each project span 4 rows */
     gap: 1em; /* Add spacing between elements */
 }
 
@@ -115,7 +115,7 @@ form button {
 .latest-projects article {
     display: grid;
     grid-template-rows: subgrid;
-    grid-row: span 3; /* Make each project span 3 rows */
+    grid-row: span 4; /* Make each project span 4 rows */
     gap: 1em; /* Add spacing between elements */
 }
 
@@ -182,4 +182,47 @@ form button {
     font-size: 2rem;
     margin: 0;
     grid-row: 2;
+}
+
+#projects-pie-plot {
+  max-width: 20em;
+  margin-block: 2em;
+  overflow: visible;
+}
+
+.container {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 2em;
+}
+
+.legend li {
+    display: flex;
+    align-items: center;
+    gap: 0.3em;
+    margin-bottom: 0.5em;
+}
+
+.legend {
+    flex: 1;
+    display: flex;
+    grid-template-columns: repeat(auto-fill, minmax(9em, 1fr));
+    flex-wrap: wrap;       /* wrap to new lines */
+    gap: 0.5em 3em;        /* space between items */
+    padding: 1em;
+    list-style: none;
+    border: 1px solid #727272;
+    border-radius: 8px;
+    background-color: color-mix(in srgb, var(--border-color), Canvas 20%);
+}
+
+.swatch {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    aspect-ratio: 1 / 1;
+    background-color: var(--color);
 }

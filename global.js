@@ -141,16 +141,19 @@ export function renderProjects(projects, containerElement, headingLevel = 'h2') 
         console.error('Invalid projects data: Expected an array of project objects.');
         return;
     }
+    projects.sort((a, b) => (b.year ?? 0) - (a.year ?? 0)); // Sort projects by year descending
     containerElement.innerHTML = ''; // Clear existing content, ensure container is empty to avoid duplication
     for (const project of projects) {
         // Fallback values
         const title = project?.title ?? 'Untitled Project';
         const image = project?.image ?? 'https://vis-society.github.io/labs/2/images/empty.svg';
         const description = project?.description ?? 'No description available.';
+        const year = project?.year ?? '';
         // Create article element for each project
         const article = document.createElement('article');
         article.innerHTML = `
             <${headingLevel}>${title}</${headingLevel}>
+            <p class="project-year"><strong>${year}</strong></p>
             <img src="${image}" alt="${title}">
             <p>${description}</p>
         `;
