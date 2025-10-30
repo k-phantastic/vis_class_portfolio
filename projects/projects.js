@@ -12,71 +12,122 @@ title.textContent = "Projects (" + projects.length + ")";
 
 // Create a pie chart using D3.js
 let arcGenerator = d3.arc().innerRadius(0).outerRadius(50); // Arc generator for pie slices
-let colors = d3.scaleOrdinal(d3.schemeTableau10); // Colors for the pie slices
+let colors = d3.scaleOrdinal(d3.schemePastel1); // Colors for the pie slices
 
 // Refactor all plotting into one function
 let selectedIndex = -1; // No slice selected initially
+let currentQuery = '';  // Track current search query globally
+
 function renderPieChart(projectsGiven) {
     let newSVG = d3.select('svg');
     newSVG.selectAll('path').remove();
-    // re-calculate rolled data
+
+    // Re-calculate rolled data
     let newRolledData = d3.rollups(
         projectsGiven,
         (v) => v.length,
-        (d) => d.year,
+        (d) => d.year
     );
-    // re-calculate data
+
+    // Re-calculate data
     let newData = newRolledData.map(([year, count]) => {
         return { value: count, label: year };
     });
-    // re-calculate slice generator, arc data, arc, etc.
+
+    // Re-calculate slice generator, arc data, arc, etc.
     let newSliceGenerator = d3.pie().value((d) => d.value);
     let newArcData = newSliceGenerator(newData);
     let newArcs = newArcData.map((d) => arcGenerator(d));
-    // TODO: clear up paths and legends
+
+    // Clear up paths and legends, then add arcs
+    let newLegend = d3.select('.legend');
+
     newArcs.forEach((arc, idx) => {
         newSVG
             .append('path')
             .attr('d', arc)
-            .attr('fill', colors(idx)); // Append the pie slice to the SVG
-    });
-    // update paths and legends, refer to steps 1.4 and 2.2
-    let newLegend = d3.select('.legend');
-    newLegend.selectAll('li').remove(); // Clear existing legend items
-    newData.forEach((d, idx) => {
-        newLegend
-            .append('li')
-            .attr('style', `--color:${colors(idx)}`) // set the style attribute while passing in parameters
-            .html(`<span class="swatch"></span> ${d.label} <em>(${d.value})</em>`) // set the inner html of <li>
+            .attr('fill', colors(idx)) // Append the pie slice to the SVG
             .on('click', () => {
                 selectedIndex = selectedIndex === idx ? -1 : idx;
                 const selectedYear = selectedIndex === -1 ? null : newData[selectedIndex].label;
-                let filteredProjects = selectedIndex === -1
-                    ? projects
-                    : projects.filter(p => p.year === selectedYear);
+
+                console.log(`Clicked on slice: ${newData[idx].label}`);
+
+                newSVG.selectAll('path').attr('class', (_, i) =>
+                    selectedIndex === i ? 'selected' : ''
+                );
+                // const filteredProjects =
+                //     selectedIndex === -1
+                //         ? projects
+                //         : projects.filter((p) => p.year === selectedYear);
+
+                // renderProjects(filteredProjects, projectsContainer, 'h2');
+                newLegend.selectAll('li')
+                    .attr('class', (_, idx) =>
+                        idx === selectedIndex ? 'selected' : null
+                    );
+                let filteredProjects = projects.filter((p) => {
+                    let matchYear = selectedIndex === -1 || p.year === selectedYear;
+                    let matchQuery = p.title.toLowerCase().includes(currentQuery.toLowerCase());
+                    return matchYear && matchQuery;
+                });
+
                 renderProjects(filteredProjects, projectsContainer, 'h2');
-                renderPieChart(filteredProjects);
+                // renderPieChart(filteredProjects);
                 title.textContent = `Projects (${filteredProjects.length})`;
             });
     });
+
+    // Update legends
+    newLegend.selectAll('li').remove(); // Clear existing legend items
+
+    newData.forEach((d, idx) => {
+        newLegend
+            .append('li')
+            .attr('style', `--color:${colors(idx)}`)
+            .html(
+                `<span class="swatch"></span> ${d.label} <em>(${d.value})</em>`
+            );
+    });
 }
 
-// Call this function on page load
-renderPieChart(projects);
+// Helper function to get selected year
+function getSelectedYear() {
+    if (selectedIndex === -1) return null;
+    let rolled = d3.rollups(projects, v => v.length, d => d.year);
+    let data = rolled.map(([year, count]) => ({ value: count, label: year }));
+    return data[selectedIndex]?.label;
+}
 
 // Search box 
 function setQuery(query) {
-    return projects.filter(project =>
-        project.title.toLowerCase().includes(query.toLowerCase())
-    );
-}
-let searchInput = document.querySelector('.searchBar');
+    currentQuery = query; // remember the search text
+    const selectedYear = getSelectedYear();
 
+    // Combine both filters (search + selected slice)
+    return projects.filter((p) => {
+        let matchQuery = p.title.toLowerCase().includes(query.toLowerCase());
+        let matchYear = selectedIndex === -1 || p.year === selectedYear;
+        return matchQuery && matchYear;
+    });
+}
+
+// Attach event listener to search input
+let searchInput = document.querySelector('.searchBar');
 searchInput.addEventListener('input', (event) => {
-    let filteredProjects = setQuery(event.target.value);
-    // re-render legends and pie chart when event triggers
+    let filteredProjects = setQuery(event.target.value); // get filtered projects
+
+    if (event.target.value === "") {
+        // if search box is empty, show all projects in the pie chart
+        renderPieChart(projects);
+    } else {
+        // optionally, show only the filtered projects in the pie chart
+        renderPieChart(filteredProjects);
+    }
+    // Re-render projects based on search and selected slice as well as title   
     renderProjects(filteredProjects, projectsContainer, 'h2');
-    renderPieChart(filteredProjects);
     title.textContent = `Projects (${filteredProjects.length})`;
 });
 
+// Call this function on page load
+renderPieChart(projects);

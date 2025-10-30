@@ -236,3 +236,21 @@ form button {
 path {
   transition: 300ms;
 }
+
+.selected {
+  --color: oklch(60% 45% 0) !important;
+
+  &:is(path) {
+    fill: var(--color);
+  }
+}
+
+.searchBar {
+    display: block;             /* ensure it sits on its own line */
+    width: 100%;                /* fills available space */
+    padding: 0.5rem 0.75rem;    /* control height/inner space */
+    font: inherit;              /* use same font as page */
+    font-size: 1rem;            /* adjust text size */
+    box-sizing: border-box;     /* include padding in width */
+    margin: 0.5rem 0;           /* spacing above/below */
+}
