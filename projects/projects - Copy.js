@@ -89,6 +89,12 @@ function renderPieChart(projectsGiven) {
                 `<span class="swatch"></span> ${d.label} <em>(${d.value})</em>`
             );
     });
+    newSVG.selectAll('path').attr('class', (d, i) =>
+        newData[i].label === selectedYear ? 'selected' : ''
+    );
+    newLegend.selectAll('li').attr('class', (d, i) =>
+        newData[i].label === selectedYear ? 'selected' : null
+    );
 }
 
 // Helper function to get selected year
@@ -102,12 +108,12 @@ function getSelectedYear() {
 // Search box 
 function setQuery(query) {
     currentQuery = query; // remember the search text
-    const currentYear = getSelectedYear();
+    const selectedYear = getSelectedYear();
 
     // Combine both filters (search + selected slice)
     return projects.filter((p) => {
         let matchQuery = p.title.toLowerCase().includes(query.toLowerCase());
-        let matchYear = selectedIndex === -1 || p.year === currentYear;
+        let matchYear = selectedIndex === -1 || p.year === selectedYear;
         return matchQuery && matchYear;
     });
 }
@@ -116,7 +122,7 @@ function setQuery(query) {
 let searchInput = document.querySelector('.searchBar');
 searchInput.addEventListener('input', (event) => {
     let filteredProjects = setQuery(event.target.value); // get filtered projects
-    console.log("Selected year: " + getSelectedYear());
+
     if (event.target.value === "") {
         // if search box is empty, show all projects in the pie chart
         renderPieChart(projects);
