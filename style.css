@@ -228,21 +228,21 @@ form button {
 }
 
 &:has(path:hover) {
-  path:not(:hover) {
-    opacity: 0.5;
-  }
+    path:not(:hover) {
+        opacity: 0.5;
+    }
 }
 
 path {
-  transition: 300ms;
+    transition: 300ms;
 }
 
 .selected {
-  --color: oklch(60% 45% 0) !important;
+    --color: oklch(60% 45% 0) !important;
 
-  &:is(path) {
-    fill: var(--color);
-  }
+    &:is(path) {
+        fill: var(--color);
+    }
 }
 
 .searchBar {
@@ -261,24 +261,24 @@ path {
 }
 
 circle {
-  transition: 200ms;
-  transform-origin: center;
-  transform-box: fill-box;
+    transition: 200ms;
+    transform-origin: center;
+    transform-box: fill-box;
 }
 
 circle:hover {
-  transform: scale(1.5);
+    transform: scale(1.5);
 }
 
 dl.info {
-  /* ... other styles ... */
-  transition-duration: 500ms;
-  transition-property: opacity, visibility;
+    /* ... other styles ... */
+    transition-duration: 500ms;
+    transition-property: opacity, visibility;
 }
 
 dl.info[hidden]:not(:hover, :focus-within) {
-  opacity: 0;
-  visibility: hidden;
+    opacity: 0;
+    visibility: hidden;
 }
 
 #commit-tooltip {
@@ -295,3 +295,20 @@ dl.info[hidden]:not(:hover, :focus-within) {
     transition: opacity 0.5s ease-in-out;
 }
 
+@keyframes marching-ants {
+  to {
+    stroke-dashoffset: -8; /* 5 + 3 */
+  }
+}
+
+.selection {
+    fill-opacity: 0.1;
+    stroke: black;
+    stroke-opacity: 0.7;
+    stroke-dasharray: 5 3;
+    animation: marching-ants 2s linear infinite;
+}
+
+circle.selected {
+    fill: #ff6b6b;
+}
