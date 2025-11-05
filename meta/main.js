@@ -185,12 +185,14 @@ function renderScatterPlot(data, commits) {
         .append('g')
         .attr('transform', `translate(${usableArea.left}, 0)`)
         .call(yAxis);
+    createBrushSelector(svg);
 }   
 
 function renderTooltipContent(commit) {
     const link = document.getElementById('commit-link');
     const date = document.getElementById('commit-date');
-
+    const time = document.getElementById('commit-time');
+    const linesChanged = document.getElementById('commit-lines-edited');
     if (Object.keys(commit).length === 0) return;
 
     link.href = commit.url;
@@ -198,6 +200,10 @@ function renderTooltipContent(commit) {
     date.textContent = commit.datetime?.toLocaleString('en', {
         dateStyle: 'full',
     });
+    time.textContent = commit.datetime?.toLocaleString('en', {
+        timeStyle: 'short',
+    });
+    linesChanged.textContent = commit.totalLines;
 }
 
 function updateTooltipVisibility(isVisible) {
@@ -210,6 +216,11 @@ function updateTooltipPosition(event) {
   tooltip.style.left = `${event.clientX}px`;
   tooltip.style.top = `${event.clientY}px`;
 }
+
+function createBrushSelector(svg) {
+  svg.call(d3.brush());
+}
+
 
 // Main execution
 
