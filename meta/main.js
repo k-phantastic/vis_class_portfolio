@@ -55,7 +55,7 @@ function processCommits(data) {
 // Render commit info statistics into the #stats element, creates table
 function renderCommitInfo(data, commits) {
     // Create the dl element
-    const dl = d3.select('#stats').append('dl').attr('class', 'stats');
+    const dl = d3.select('#web-commit-stats').append('dl').attr('class', 'stats');
     // Add total commits
     dl.append('dt').text('Commits');
     dl.append('dd').text(commits.length);
@@ -280,14 +280,16 @@ function renderLanguageBreakdown(selection) {
   );
 
   // Update DOM with breakdown
-  container.innerHTML = '';
+//   container.innerHTML = '';
+    container.innerHTML = '<dl></dl>';
+    const dl = container.querySelector('dl');
 
   for (const [language, count] of breakdown) {
     const proportion = count / lines.length;
     const formatted = d3.format('.1~%')(proportion);
 
-    container.innerHTML += `
-            <dt>${language}</dt>
+    dl.innerHTML += `
+            <dt>${language}:</dt>
             <dd>${count} lines (${formatted})</dd>
         `;
   }

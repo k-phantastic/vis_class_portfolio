@@ -10,33 +10,33 @@
 </head>
 <body>
     <h1>Meta</h1>
-    <p>This page includes stats about the code of the website</p>
     <h2>Summary</h2>
-    <div id="stats">
+    <div id="web-commit-stats">
         <!-- Dynamically added content will appear here for meta stats -->
     </div>
     <br>
-    <h2>Commits by time of day</h2>
+    <h2>Commits by Time of Day</h2>
     <br>
-    <div id="chart"></div>
-    <dl id="commit-tooltip" class="info tooltip" hidden>
-    <dt>Commit</dt>
-        <dd>
-            <a href="" id="commit-link" target="_blank"></a>
-        </dd>
+    <div class="chart-layout">
+        <div id="chart"></div>
+        <dl id="commit-tooltip" class="info tooltip" hidden>
+        <dt>Commit</dt>
+            <dd>
+                <a href="" id="commit-link" target="_blank"></a>
+            </dd>
 
-        <dt>Date</dt>
-        <dd id="commit-date"></dd>
+            <dt>Date</dt>
+            <dd id="commit-date"></dd>
 
-        <!-- Add: Time, author, lines edited -->
-        <dt>Time</dt>
-        <dd id="commit-time"></dd>
+            <!-- Add: Time, author, lines edited -->
+            <dt>Time</dt>
+            <dd id="commit-time"></dd>
 
-        <dt>Lines Edited</dt>
-        <dd id="commit-lines-edited"></dd>
-    </dl>
-    <p id="selection-count">No commits selected</p>
-    <dl id="language-breakdown" class="stats"></dl>
-
+            <dt>Lines Edited</dt>
+            <dd id="commit-lines-edited"></dd>
+        </dl>
+        <p id="selection-count">No commits selected</p>
+        <div id="language-breakdown" class="stats"></div>
+    </div>
 </body>
 </html>
