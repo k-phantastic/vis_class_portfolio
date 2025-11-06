@@ -1,7 +1,7 @@
-import { fetchJSON, renderProjects } from "../global.js"; // Import utility functions
+import { fetchJSON, renderProjects } from "../scripts/global.js"; // Import utility functions
 import * as d3 from 'https://cdn.jsdelivr.net/npm/d3@7.9.0/+esm'; // Import D3.js
 
-const projects = await fetchJSON('../lib/projects.json'); 
+const projects = await fetchJSON('../_lib/projects.json'); 
 
 const projectsContainer = document.querySelector('.projects'); 
 

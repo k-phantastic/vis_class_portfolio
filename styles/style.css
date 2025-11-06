@@ -365,11 +365,11 @@ circle.selected {
   position: sticky;
   top: 1rem;  /* stays visible when scrolling */
   align-self: start;
-  background: color-mix(in srgb, var(--background, #fff) 90%, black 10%);
+  /* background: color-mix(in srgb, var(--background, #fff) 40%, black 10%); */
   border-radius: 8px;
   padding: 1rem;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  height: 10vh;
+  height: 15vh;
   overflow-y: auto;
 }
 
