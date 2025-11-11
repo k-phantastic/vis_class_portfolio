@@ -318,46 +318,14 @@ function updateScatterPlot(data, commits) {
     height: height - margin.top - margin.bottom,
   };
 
-  // CHANGE: instead of creating a new svg element, we'll select the existing one.
-  const svg = d3
-    .select('#chart')
-    .append('svg')
-    .attr('id', 'chart-svg')
-    .attr('viewBox', `0 0 ${width} ${height}`)
-    .style('overflow', 'visible');
+  const svg = d3.select('#chart').select('svg');
 
-  // CHANGE: we don't need to create a new xScale, we can just update the existing one.
-  xScale = d3
-    .scaleTime()
-    .domain(d3.extent(commits, (d) => d.datetime))
-    .range([usableArea.left, usableArea.right])
-    .nice();
-
-  // REMOVE: the yScale doesn't change when the user changes the slider
-  yScale = d3
-    .scaleLinear()
-    .domain([0, 24])
-    .range([usableArea.bottom, usableArea.top]);
+  xScale = xScale.domain(d3.extent(commits, (d) => d.datetime));
 
   const [minLines, maxLines] = d3.extent(commits, (d) => d.totalLines);
-  const rScale = d3.scaleSqrt().domain([minLines, maxLines]).range([2, 30]); // adjust these values based on your experimentation
+  const rScale = d3.scaleSqrt().domain([minLines, maxLines]).range([2, 30]);
 
   const xAxis = d3.axisBottom(xScale);
-
-  // REMOVE: the yAxis doesn't change when the user changes the slider
-  const yAxis = d3
-    .axisLeft(yScale)
-    .tickFormat((d) => String(d % 24).padStart(2, '0') + ':00');
-
-  // REMOVE: the gridlines don't change when the user changes the slider
-  const gridlines = svg
-    .append('g')
-    .attr('class', 'gridlines')
-    .attr('transform', `translate(${usableArea.left}, 0)`);
-
-  gridlines.call(
-    d3.axisLeft(yScale).tickFormat('').tickSize(-usableArea.width),
-  );
 
   // CHANGE: we should clear out the existing xAxis and then create a new one.
   svg
@@ -365,16 +333,8 @@ function updateScatterPlot(data, commits) {
     .attr('transform', `translate(0, ${usableArea.bottom})`)
     .call(xAxis);
 
-  // REMOVE: the yAxis doesn't change when the user changes the slider
-  svg
-    .append('g')
-    .attr('transform', `translate(${usableArea.left}, 0)`)
-    .call(yAxis);
+  const dots = svg.select('g.dots');
 
-  // CHANGE: we shouldn't need to create a new dots group, we can just select the existing one.
-  const dots = svg.append('g').attr('class', 'dots');
-
-  // KEEP: This code already updates existing dots.
   const sortedCommits = d3.sort(commits, (d) => -d.totalLines);
   dots
     .selectAll('circle')
@@ -395,41 +355,34 @@ function updateScatterPlot(data, commits) {
       d3.select(event.currentTarget).style('fill-opacity', 0.7);
       updateTooltipVisibility(false);
     });
-
-  // REMOVE: the brush selector doesn't change when the user changes the slider
-  createBrushSelector(svg);
 }
 
-// Maximum time we want to show as a percentage of total time
+// Maximum time we want to show as a percentage of total time let 
 let commitProgress = 100;
 
-// Create time scale from commits datetime to [0, 100]
+// Create time scale from commits datetime to [0, 100] l
 let timeScale = d3
-    .scaleTime()
-    .domain([
-      d3.min(commits, (d) => d.datetime),
-      d3.max(commits, (d) => d.datetime),
-    ])
-    .range([0, 100]);
-let commitMaxTime = timeScale.invert(commitProgress);
+  .scaleTime()
+  .domain([ 
+    d3.min(commits, (d) => d.datetime), 
+    d3.max(commits, (d) => d.datetime), 
+  ]) 
+  .range([0, 100]); 
+let commitMaxTime = timeScale.invert(commitProgress); 
 
-// Select elements of the time slider
-const commitSlider = document.getElementById("commit-progress");
-const commitTimeDisplay = document.getElementById("commit-slider-time");
-let filteredCommits = commits; // Will get updated as user changes slider
-
-// Update function for time slider
-function onTimeSliderChange() {
-  let timeFilter = Number(commitSlider.value); // Get slider value 0-100
-  commitMaxTime = timeScale.invert(timeFilter); // convert to actual Date
-  commitTimeDisplay.textContent = commitMaxTime.toLocaleString('en-US', {
+// Select elements 
+const commitSlider = document.getElementById("commit-progress"); 
+const commitTimeDisplay = document.getElementById("commit-slider-time"); 
+function onTimeSliderChange() { 
+  let timeFilter = Number(commitSlider.value); 
+  // Get slider value 0-100 
+  commitMaxTime = timeScale.invert(timeFilter); 
+  // convert to actual Date
+  commitTimeDisplay.textContent = commitMaxTime.toLocaleString('en-US', { 
     dateStyle: 'long',
-    timeStyle: 'short'
-  });
-  // Filter commits based on selected time
-  filteredCommits = commits.filter((d) => d.datetime <= commitMaxTime);
+    timeStyle: 'short' 
+  }); 
 }
-
 
 commitSlider.addEventListener('input', onTimeSliderChange); // Attach event listener
 onTimeSliderChange(); // Initialize display on page load
