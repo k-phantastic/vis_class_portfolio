@@ -145,12 +145,14 @@ function renderScatterPlot(data, commits) {
   svg
     .append('g')
     .attr('transform', `translate(0, ${usableArea.bottom})`)
+    .attr('class', 'x-axis') // new line to mark the g tag
     .call(xAxis);
 
   // Add Y axis
   svg
     .append('g')
     .attr('transform', `translate(${usableArea.left}, 0)`)
+    .attr('class', 'y-axis') // just for consistency
     .call(yAxis);
   
   // Draw dots
@@ -159,12 +161,13 @@ function renderScatterPlot(data, commits) {
 
   dots
     .selectAll('circle')
-    .data(sortedCommits)
+    .data(sortedCommits, (d) => d.id)
     .join('circle')
     .attr('cx', (d) => xScale(d.datetime))
     .attr('cy', (d) => yScale(d.hourFrac))
     .attr('fill', 'steelblue')
     .attr('r', (d) => rScale(d.totalLines))
+    .style('--r', d => rScale(d.totalLines)) // CSS variable for transition
     .style('fill-opacity', 0.7) // Add transparency for overlapping dots
     .on('mouseenter', (event, commit) => {
         d3.select(event.currentTarget).style('fill-opacity', 1); // Full opacity on hover
@@ -327,23 +330,22 @@ function updateScatterPlot(data, commits) {
 
   const xAxis = d3.axisBottom(xScale);
 
-  // CHANGE: we should clear out the existing xAxis and then create a new one.
-  svg
-    .append('g')
-    .attr('transform', `translate(0, ${usableArea.bottom})`)
-    .call(xAxis);
+  const xAxisGroup = svg.select('g.x-axis');
+  xAxisGroup.selectAll('*').remove();
+  xAxisGroup.call(xAxis);
 
   const dots = svg.select('g.dots');
 
   const sortedCommits = d3.sort(commits, (d) => -d.totalLines);
   dots
     .selectAll('circle')
-    .data(sortedCommits)
+    .data(sortedCommits, (d) => d.id)
     .join('circle')
     .attr('cx', (d) => xScale(d.datetime))
     .attr('cy', (d) => yScale(d.hourFrac))
     .attr('r', (d) => rScale(d.totalLines))
     .attr('fill', 'steelblue')
+    .style('--r', d => rScale(d.totalLines)) // CSS variable for transition
     .style('fill-opacity', 0.7) // Add transparency for overlapping dots
     .on('mouseenter', (event, commit) => {
       d3.select(event.currentTarget).style('fill-opacity', 1); // Full opacity on hover
@@ -373,6 +375,8 @@ let commitMaxTime = timeScale.invert(commitProgress);
 // Select elements 
 const commitSlider = document.getElementById("commit-progress"); 
 const commitTimeDisplay = document.getElementById("commit-slider-time"); 
+let filteredCommits = commits; // Will get updated as user changes slider
+
 function onTimeSliderChange() { 
   let timeFilter = Number(commitSlider.value); 
   // Get slider value 0-100 
@@ -382,6 +386,8 @@ function onTimeSliderChange() {
     dateStyle: 'long',
     timeStyle: 'short' 
   }); 
+  filteredCommits = commits.filter((d) => d.datetime <= commitMaxTime);
+  updateScatterPlot(data, filteredCommits);
 }
 
 commitSlider.addEventListener('input', onTimeSliderChange); // Attach event listener
