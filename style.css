@@ -391,3 +391,22 @@ circle.selected {
     color: color-mix(in srgb, GrayText 90%, Canvas 5%);
     text-transform: uppercase;
 }
+
+.timeControls {
+  display: flex;
+  align-items: baseline;
+  gap: 1em;
+  margin-bottom: 1em;
+  font-family: system-ui, sans-serif;
+}
+
+.timeControls label {
+  flex: 1;
+}
+
+#commit-time {
+  margin-left: auto;
+  font-weight: 600;
+  font-size: 0.9em;
+  color: #444;
+}

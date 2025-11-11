@@ -10,6 +10,7 @@
 </head>
 <body>
     <h1>Meta</h1>
+
     <h2>Summary</h2>
     <div id="web-commit-stats">
         <!-- Dynamically added content will appear here for meta stats -->
@@ -36,6 +37,20 @@
                 <dd id="commit-lines-edited"></dd>
         </dl>
         <p id="selection-count">No commits selected</p>
+
+        <!-- Time Controls -->
+        <header class = "timeControls">
+            <label for="commit-progress">Show commits until:
+                <input 
+                type = "range"
+                id = "commit-progress"
+                min = "0"
+                max = "100" 
+                />   
+            </label>
+            <time id="commit-time"></time>
+        </header>
+        <!-- Language Breakdown -->
         <div id="language-breakdown" class="stats"></div>
     </div>
 </body>

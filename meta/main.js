@@ -28,7 +28,7 @@ function processCommits(data) {
 
       // We can use object destructuring to get these properties
       let { author, date, time, timezone, datetime } = first;
-
+      // Create commit object
       let ret = {
         id: commit,
         url: 'https://github.com/k-phantastic/vis_class_portfolio/commit/' + commit,
@@ -40,7 +40,7 @@ function processCommits(data) {
         hourFrac: datetime.getHours() + datetime.getMinutes() / 60,
         totalLines: lines.length,
       };
-
+      // Attach lines array as a non-enumerable property
       Object.defineProperty(ret, 'lines', {
         value: lines,
         enumerable: false,   // hide from loops & JSON.stringify
@@ -84,7 +84,10 @@ function renderCommitInfo(data, commits) {
     dl.append('dt').text('Avg Depth');
     dl.append('dd').text(avgDepth);
 }
+
+// Scales for scatter plot
 let xScale, yScale;
+
 // Create scatter plot
 function renderScatterPlot(data, commits) {
     // Set up SVG and scales
@@ -96,18 +99,29 @@ function renderScatterPlot(data, commits) {
         .append('svg')
         .attr('viewBox', `0 0 ${width} ${height}`) 
         .style('overflow', 'visible'); // allow for axes labels outside the SVG area
+    
+        // Margin and usable area 
+    const margin = { top: 10, right: 10, bottom: 30, left: 20 };
+    const usableArea = {
+        top: margin.top,
+        right: width - margin.right,
+        bottom: height - margin.bottom,
+        left: margin.left,
+        width: width - margin.left - margin.right,
+        height: height - margin.top - margin.bottom,
+    };
 
     // Scales
     xScale = d3 
         .scaleTime()
         .domain(d3.extent(commits, (d) => d.datetime)) // [min, max] of datetime 
-        .range([0, width]) // map to [0, width]
+        .range([usableArea.left, usableArea.right]) // map to [0, width]
         .nice();
 
     yScale = d3
         .scaleLinear()
         .domain([0, 24])
-        .range([height, 0]);
+        .range([usableArea.bottom, usableArea.top]);
     
     // Draw circles
     const [minLines, maxLines] = d3.extent(commits, (d) => d.totalLines);
@@ -115,8 +129,6 @@ function renderScatterPlot(data, commits) {
         .scaleSqrt() // Change only this line
         .domain([minLines, maxLines])
         .range([2, 30]);
-
-
 
     const dots = svg.append('g').attr('class', 'dots');
     // Sort commits by total lines in descending order
@@ -144,21 +156,6 @@ function renderScatterPlot(data, commits) {
             d3.select(event.currentTarget).style('fill-opacity', 0.7);
             updateTooltipVisibility(false);
         });
-
-    // Margin and usable area 
-    const margin = { top: 10, right: 10, bottom: 30, left: 20 };
-    const usableArea = {
-        top: margin.top,
-        right: width - margin.right,
-        bottom: height - margin.bottom,
-        left: margin.left,
-        width: width - margin.left - margin.right,
-        height: height - margin.top - margin.bottom,
-    };
-
-    // Update scales with new ranges
-    xScale.range([usableArea.left, usableArea.right]);
-    yScale.range([usableArea.bottom, usableArea.top]);
 
     // Add gridlines BEFORE the axes
     const gridlines = svg
@@ -188,6 +185,7 @@ function renderScatterPlot(data, commits) {
     createBrushSelector(svg);
 }   
 
+// Tooltip functions 
 function renderTooltipContent(commit) {
     const link = document.getElementById('commit-link');
     const date = document.getElementById('commit-date');
@@ -206,17 +204,20 @@ function renderTooltipContent(commit) {
     linesChanged.textContent = commit.totalLines;
 }
 
+// Show/hide tooltip
 function updateTooltipVisibility(isVisible) {
   const tooltip = document.getElementById('commit-tooltip');
   tooltip.hidden = !isVisible;
 }
 
+// Update tooltip position
 function updateTooltipPosition(event) {
   const tooltip = document.getElementById('commit-tooltip');
   tooltip.style.left = `${event.clientX}px`;
   tooltip.style.top = `${event.clientY}px`;
 }
 
+// Brush functions
 function brushed(event) {
     const selection = event.selection;
     d3.selectAll('circle').classed('selected', (d) =>
@@ -226,6 +227,7 @@ function brushed(event) {
     renderLanguageBreakdown(selection);
 }
 
+// Check if a commit is within the brush selection
 function isCommitSelected(selection, commit) {
     if (!selection) {
         return false;
@@ -238,6 +240,7 @@ function isCommitSelected(selection, commit) {
     return x >= x0 && x <= x1 && y >= y0 && y <= y1;
 }
 
+// Create brush selector on the SVG
 function createBrushSelector(svg) {
     // Create brush
     svg.call(d3.brush().on('start brush end', brushed));
@@ -246,6 +249,7 @@ function createBrushSelector(svg) {
     svg.selectAll('.dots, .overlay ~ *').raise();
 }
 
+// Render selection count 
 function renderSelectionCount(selection) {
     const selectedCommits = selection
         ? commits.filter((d) => isCommitSelected(selection, d))
@@ -259,6 +263,7 @@ function renderSelectionCount(selection) {
     return selectedCommits;
 }
 
+// Render language breakdown for selected commits 
 function renderLanguageBreakdown(selection) {
   const selectedCommits = selection
     ? commits.filter((d) => isCommitSelected(selection, d))
@@ -274,19 +279,18 @@ function renderLanguageBreakdown(selection) {
 
   // Use d3.rollup to count lines per language
   const breakdown = d3.rollup(
-    lines,
-    (v) => v.length,
-    (d) => d.type,
+      lines,
+      (v) => v.length,
+      (d) => d.type,
   );
 
   // Update DOM with breakdown
-//   container.innerHTML = '';
-    container.innerHTML = '<dl></dl>';
-    const dl = container.querySelector('dl');
+  container.innerHTML = '<dl></dl>';
+  const dl = container.querySelector('dl');
 
   for (const [language, count] of breakdown) {
-    const proportion = count / lines.length;
-    const formatted = d3.format('.1~%')(proportion);
+      const proportion = count / lines.length;
+      const formatted = d3.format('.1~%')(proportion);
 
     dl.innerHTML += `
             <dt>${count} lines (${formatted})</dt>
@@ -303,3 +307,38 @@ let commits = processCommits(data);
 renderCommitInfo(data, commits);
 
 renderScatterPlot(data, commits);
+
+// Lab 8
+
+// Maximum time we want to show as a percentage of total time
+let commitProgress = 100;
+
+// Create time scale from commits datetime to [0, 100]
+let timeScale = d3
+    .scaleTime()
+    .domain([
+      d3.min(commits, (d) => d.datetime),
+      d3.max(commits, (d) => d.datetime),
+    ])
+    .range([0, 100]);
+let commitMaxTime = timeScale.invert(commitProgress);
+
+// Select elements
+const commitSlider = document.getElementById("commit-progress");
+const commitTimeDisplay = document.getElementById("commit-time");
+
+function onTimeSliderChange() {
+  commitProgress = +commitSlider.value;                   // 1️⃣ get new slider value
+  commitMaxTime = timeScale.invert(commitProgress);       // 2️⃣ map slider -> date
+  commitTimeDisplay.textContent = commitMaxTime.toLocaleString(); // 3️⃣ update text
+  
+  // 4️⃣ (optional) filter and update visuals:
+  // e.g. only show commits before commitMaxTime
+  updateCommits(commitMaxTime);
+}
+
+// Attach event listener
+commitSlider.addEventListener('input', onTimeSliderChange);
+
+// Initialize display on page load
+onTimeSliderChange();
