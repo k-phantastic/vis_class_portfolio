@@ -46,10 +46,24 @@
                 id = "commit-progress"
                 min = "0"
                 max = "100" 
+                value = "100"
                 />   
             </label>
         </div>
         <time id="commit-slider-time"></time>
+
+        
+        <dl id="files">
+            <!-- we want the following structure for each file:
+            <div>
+                <dt>
+                <code>{file.name}</code>
+                </dt>
+                <dd>{file.lines.length} lines</dd>
+            </div>
+            -->
+        </dl>
+
         <!-- Language Breakdown -->
         <div id="language-breakdown" class="stats"></div>
     </div>
