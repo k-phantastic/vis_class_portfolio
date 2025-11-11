@@ -416,13 +416,22 @@ function updateFileDisplay(filteredCommits) {
     );
 
   // This code updates the div info
-  filesContainer.select('dt > code').text((d) => d.name);
-  filesContainer.select('dd').text((d) => `${d.lines.length} lines`);
+
+  filesContainer.select('dt')
+    .html((d) => `
+      <code>${d.name}</code>
+      <small>${d.lines.length} lines</small>
+    `);
+  // filesContainer.select('dt > code').text((d) => d.name);
+  
+  // filesContainer
+  //   .select('dd')
+  //   .text((d) => `${d.lines.length} lines`);
 
   filesContainer
     .select('dd')
-    .selectAll('div.line')
+    .selectAll('div')
     .data(d => d.lines)
     .join('div')
-    .attr('class', 'line');
+    .attr('class', 'loc');
 }

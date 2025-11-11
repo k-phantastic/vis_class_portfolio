@@ -433,10 +433,13 @@ circle.selected {
         grid-column: 1 / -1;
         display: grid;
         grid-template-columns: subgrid;
+        margin-bottom: 1em;
     }
 
     dt {
         grid-column: 1;
+        font-weight: 600;
+        margin-right: 1em;
     }
     dd {
         grid-column: 2;
@@ -447,6 +450,11 @@ circle.selected {
         gap: 0.15em;
         padding-top: 0.6em;
         margin-left: 0;
+    }
+    small {
+        display: block;
+        font-size: 0.7rem;
+        color: color-mix(in srgb, GrayText 80%, Canvas 20%);
     }
 }
 
