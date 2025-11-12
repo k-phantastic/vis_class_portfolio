@@ -488,7 +488,7 @@ circle.selected {
     height: 50vh;
 }
 
-#scrolly-files {
+/* #scrolly-files {
   display: flex;
   align-items: flex-start;
   gap: 2rem;
@@ -497,7 +497,7 @@ circle.selected {
 
 #files {
   position: sticky;
-  top: 10vh; /* keeps it pinned as you scroll */
+  top: 10vh;
   flex: 1;
 }
 
@@ -506,4 +506,4 @@ circle.selected {
   display: flex;
   flex-direction: column;
   gap: 3rem;
-}
+} */
