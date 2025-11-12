@@ -398,6 +398,7 @@ let filteredCommits = commits; // Will get updated as user changes slider
 // commitSlider.addEventListener('input', onTimeSliderChange); // Attach event listener
 // onTimeSliderChange(); // Initialize display on page load
 
+// Update file display based on filtered commits
 function updateFileDisplay(filteredCommits) {
   let lines = filteredCommits.flatMap((d) => d.lines);
   let files = d3
@@ -479,3 +480,31 @@ scroller
     step: '#scrolly-1 .step',
   })
   .onStepEnter(onStepEnter)
+
+// function onFileStepEnter(response) {
+//   const commitTime = response.element.__data__.datetime;
+//   const filteredCommits = commits.filter(d => d.datetime <= commitTime);
+//   updateFileDisplay(filteredCommits);
+// }
+
+// Build text steps for file visualization
+// d3.select('#file-story')
+//   .selectAll('.step')
+//   .data(commits)
+//   .join('div')
+//   .attr('class', 'step')
+//   .html(d => `
+//     <p>At ${d.datetime.toLocaleString('en', { dateStyle: 'full' })},
+//     I edited ${d.totalLines} lines across ${
+//       d3.rollups(d.lines, D => D.length, d => d.file).length
+//     } files.</p>
+//   `);
+
+// Initialize scrollama
+// const fileScroller = scrollama();
+// fileScroller
+//   .setup({
+//     container: '#scrolly-files',
+//     step: '#scrolly-files .step',
+//   })
+//   .onStepEnter(onFileStepEnter);

@@ -487,3 +487,23 @@ circle.selected {
     bottom: auto;
     height: 50vh;
 }
+
+#scrolly-files {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  position: relative;
+}
+
+#files {
+  position: sticky;
+  top: 10vh; /* keeps it pinned as you scroll */
+  flex: 1;
+}
+
+#file-story {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
