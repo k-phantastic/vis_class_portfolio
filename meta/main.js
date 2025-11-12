@@ -27,32 +27,33 @@ function processCommits(data) {
       // Each 'lines' array contains all lines modified in this commit
       // All lines in a commit have the same author, date, etc.
       // So we can get this information from the first line
-    let first = lines[0];
+      let first = lines[0];
 
-    // We can use object destructuring to get these properties
-    let { author, date, time, timezone, datetime } = first;
-    // Create commit object
-    let ret = {
-      id: commit,
-      url: 'https://github.com/k-phantastic/vis_class_portfolio/commit/' + commit,
-      author,
-      date,
-      time,
-      timezone,
-      datetime,
-      hourFrac: datetime.getHours() + datetime.getMinutes() / 60,
-      totalLines: lines.length,
-    };
-    // Attach lines array as a non-enumerable property
-    Object.defineProperty(ret, 'lines', {
-      value: lines,
-      enumerable: false,   // hide from loops & JSON.stringify
-      writable: true,      // can modify later if needed
-      configurable: true   // can redefine or delete later
-    });
+      // We can use object destructuring to get these properties
+      let { author, date, time, timezone, datetime } = first;
+      // Create commit object
+      let ret = {
+        id: commit,
+        url: 'https://github.com/k-phantastic/vis_class_portfolio/commit/' + commit,
+        author,
+        date,
+        time,
+        timezone,
+        datetime,
+        hourFrac: datetime.getHours() + datetime.getMinutes() / 60,
+        totalLines: lines.length,
+      };
+      // Attach lines array as a non-enumerable property
+      Object.defineProperty(ret, 'lines', {
+        value: lines,
+        enumerable: false,   // hide from loops & JSON.stringify
+        writable: true,      // can modify later if needed
+        configurable: true   // can redefine or delete later
+      });
 
-    return ret;
-    });
+      return ret;
+    })
+    .sort((a, b) => a.datetime - b.datetime); // Sort by datetime
 }
 
 // Render commit info statistics into the #stats element, creates table
@@ -380,22 +381,22 @@ const commitSlider = document.getElementById("commit-progress");
 const commitTimeDisplay = document.getElementById("commit-slider-time"); 
 let filteredCommits = commits; // Will get updated as user changes slider
 
-function onTimeSliderChange() { 
-  let timeFilter = Number(commitSlider.value); 
-  // Get slider value 0-100 
-  commitMaxTime = timeScale.invert(timeFilter); 
-  // convert to actual Date
-  commitTimeDisplay.textContent = commitMaxTime.toLocaleString('en-US', { 
-    dateStyle: 'long',
-    timeStyle: 'short' 
-  }); 
-  filteredCommits = commits.filter((d) => d.datetime <= commitMaxTime);
-  updateScatterPlot(data, filteredCommits);
-  updateFileDisplay(filteredCommits);
-}
+// function onTimeSliderChange() { 
+//   let timeFilter = Number(commitSlider.value); 
+//   // Get slider value 0-100 
+//   commitMaxTime = timeScale.invert(timeFilter); 
+//   // convert to actual Date
+//   commitTimeDisplay.textContent = commitMaxTime.toLocaleString('en-US', { 
+//     dateStyle: 'long',
+//     timeStyle: 'short' 
+//   }); 
+//   filteredCommits = commits.filter((d) => d.datetime <= commitMaxTime);
+//   updateScatterPlot(data, filteredCommits);
+//   updateFileDisplay(filteredCommits);
+// }
 
-commitSlider.addEventListener('input', onTimeSliderChange); // Attach event listener
-onTimeSliderChange(); // Initialize display on page load
+// commitSlider.addEventListener('input', onTimeSliderChange); // Attach event listener
+// onTimeSliderChange(); // Initialize display on page load
 
 function updateFileDisplay(filteredCommits) {
   let lines = filteredCommits.flatMap((d) => d.lines);
@@ -464,7 +465,11 @@ d3.select('#scatter-story')
   );
 
 function onStepEnter(response) {
-  console.log(response.element.__data__.datetime);
+  const commitTime = response.element.__data__.datetime; // Log the commit datetime associated with the step 
+  const filteredCommits = commits.filter((d) => d.datetime <= commitTime);
+
+  updateScatterPlot(data, filteredCommits); 
+  updateFileDisplay(filteredCommits); 
 }
 
 const scroller = scrollama();
