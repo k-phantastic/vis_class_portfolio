@@ -459,9 +459,31 @@ circle.selected {
 }
 
 .loc {
-  display: flex;
-  width: 0.5em;
-  aspect-ratio: 1;
-  background: steelblue;
-  border-radius: 50%;
+    display: flex;
+    width: 0.5em;
+    aspect-ratio: 1;
+    background: steelblue;
+    border-radius: 50%;
+}
+
+#scrolly-1 {
+    position: relative;
+    display: flex;
+    gap: 1rem;
+
+    > * {
+        flex: 1;
+    }
+}
+
+#scatter-story {
+    position: relative;
+}
+
+#scatter-plot {
+    position: sticky;
+    top: 0;
+    left: 0;
+    bottom: auto;
+    height: 50vh;
 }

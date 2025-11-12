@@ -1,72 +1,98 @@
 [
     {
         "title": "Persuasive/Deceptive Visualizations",
+        "url": "",
         "year": "2025",
         "image": "/vis_class_portfolio/project2_report/for.png",
         "description": "Two visualizations representing opposite narratives of a proposition from the same dataset."
     },
     {
+        "title": "Global Health by BHKL Labs",
+        "url": "",
+        "year": "2025",
+        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "description": "Interactive visualization exploring global health indicators of >188 countries"
+    },
+    {
+        "title": "Boston Bike Routes",
+        "url": "",
+        "year": "2025",
+        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "description": "D3 and MapBox showcase on popular bike routes in Boston."
+    },
+    {
         "title": "Nutrient Distribution by Food Processing Level",
+        "url": "",
         "year": "2025",
         "image": "/vis_class_portfolio/images/expo_vis.png",
         "description": "Visual representation of how nutrient levels vary across different food processing categories, highlighting health implications."
     },
     {
         "title": "Restaurant Classification",
+        "url": "",
         "year": "2025",
         "image": "/vis_class_portfolio/images/restaurant_classification.png",
         "description": "A project digesting restaurant reviews and attributes to determine type of food served"
     },
     {
         "title": "Pickleball Data Warehouse",
+        "url": "",
         "year": "2025",
         "image": "/vis_class_portfolio/images/pickleball_data_warehouse.png",
         "description": "SQL cleanup of raw data using medallion structure."
     },
     {
         "title": "MechaCar Statistical Analysis",
+        "url": "",
         "year": "2023",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "The application of R through RStudio is used to extract and transform data for a company"
     },
     {
         "title": "Kickstarter Analysis",
+        "url": "",
         "year": "2022",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "Excel analysis of Kickstarter campaigns to determine factors that lead to success."
     },
     {
         "title": "World Weather Analysis",
+        "url": "",
         "year": "2022",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "Python was utilized in conjunction with GeoViews and Geoapify in order to narrow down a potential vacation destination and city travel itinerary"
     },
     {
         "title": "Crowdfunding (ETL)",
+        "url": "",
         "year": "2023",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": " Python and PostgreSQL in order to digest the dataset such that the tables are correlated to determine a specific information queries as desired"
     },
     {
         "title": "Surfs Up",
+        "url": "",
         "year": "2023",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "Usage of SQLalchemy in Python to extract and transform weather data for Hawaii"
     },
     {
         "title": "School District Analysis",
+        "url": "",
         "year": "2024",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "Pandas sandbox to analyze school district performance and funding."
     },
     {
         "title": "Pickleball Paddle Comparison",
+        "url": "",
         "year": "2024",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "ETL of various reviewers' data on pickleball paddles"
     },
     {
         "title": "Steam Review Analysis",
+        "url": "",
         "year": "2025",
         "image": "../images/steam_review_analysis.png",
         "description": "PySpark and pandas analysis of Steam game reviews to determine factors that lead to positive reviews."

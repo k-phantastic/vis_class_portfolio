@@ -18,54 +18,59 @@
     <br>
     <h2>Commits by Time of Day</h2>
     <br>
-    <div class="chart-layout">
-        <div id="chart"></div>
-        <dl id="commit-tooltip" class="info tooltip" hidden>
-            <dt>Commit</dt>
-                <dd>
-                    <a href="" id="commit-link" target="_blank"></a>
-                </dd>
+    <div id="scrolly-1">
+        <div id="scatter-story">some filler text here</div>
+        <div id="scatter-plot">
+            <div class="chart-layout">
+                <div id="chart"></div>
+                <dl id="commit-tooltip" class="info tooltip" hidden>
+                    <dt>Commit</dt>
+                        <dd>
+                            <a href="" id="commit-link" target="_blank"></a>
+                        </dd>
 
-            <dt>Date</dt>
-                <dd id="commit-date"></dd>
+                    <dt>Date</dt>
+                        <dd id="commit-date"></dd>
 
-            <!-- Add: Time, author, lines edited -->
-            <dt>Time</dt>
-                <dd id="commit-time"></dd>
+                    <!-- Add: Time, author, lines edited -->
+                    <dt>Time</dt>
+                        <dd id="commit-time"></dd>
 
-            <dt>Lines Edited</dt>
-                <dd id="commit-lines-edited"></dd>
-        </dl>
-        <p id="selection-count">No commits selected</p>
+                    <dt>Lines Edited</dt>
+                        <dd id="commit-lines-edited"></dd>
+                </dl>
+                <p id="selection-count">No commits selected</p>
 
-        <!-- Time Controls -->
-        <div class = "timeControls">
-            <label for="commit-progress">Show commits until:
-                <input 
-                type = "range"
-                id = "commit-progress"
-                min = "0"
-                max = "100" 
-                value = "100"
-                />   
-            </label>
-        </div>
-        <time id="commit-slider-time"></time>
+                <!-- Time Controls -->
+                <div class = "timeControls">
+                    <label for="commit-progress">Show commits until:
+                        <input 
+                        type = "range"
+                        id = "commit-progress"
+                        min = "0"
+                        max = "100" 
+                        value = "100"
+                        />   
+                    </label>
+                </div>
+                <time id="commit-slider-time"></time>
 
-        
-        <dl id="files">
-            <!-- we want the following structure for each file:
-            <div>
-                <dt>
-                <code>{file.name}</code>
-                </dt>
-                <dd>{file.lines.length} lines</dd>
+                
+                <dl id="files">
+                    <!-- we want the following structure for each file:
+                    <div>
+                        <dt>
+                        <code>{file.name}</code>
+                        </dt>
+                        <dd>{file.lines.length} lines</dd>
+                    </div>
+                    -->
+                </dl>
+
+                <!-- Language Breakdown -->
+                <div id="language-breakdown" class="stats"></div>
             </div>
-            -->
-        </dl>
-
-        <!-- Language Breakdown -->
-        <div id="language-breakdown" class="stats"></div>
-    </div>
+        </div>
+    </div> 
 </body>
 </html>
